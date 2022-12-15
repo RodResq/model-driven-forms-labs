@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  langs: string[] = ["English", "French", "German"];
+  langs: string[] = [
+    'English',
+    'French',
+    'German'
+  ]
+
 }

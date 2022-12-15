@@ -26,8 +26,8 @@
           <label>Language</label>
           <select class="form-control">
             <option value="">Please select a language</option>
-            <option *ngFor="let lang of langs"
-                    [value]="lang">{{lang}}
+            <option [value]="lang" *ngFor="let lang of langs">
+              {{ lang }}
             </option>
           </select>
         </div>
