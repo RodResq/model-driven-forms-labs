@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'model-driven-forms-labs';
+
+  langs: string[] = ["English", "French", "German"];
 }
