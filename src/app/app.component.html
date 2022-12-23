@@ -1,30 +1,49 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form>
-        <div class="form-group">
-          <label>First Name</label>
-          <input type="text"
-                class="form-control">
-        </div>
-        <div class="form-group">
-          <label>Last Name</label>
-          <input type="text"
-                class="form-control">
+      <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div 
+          class="form-group"
+          formGroupName="name">
+          <div class="form-group">
+            <label>First Name</label>
+            <input 
+              type="text"
+              class="form-control"
+              formControlName="firstname">
+              <span *ngIf="!myForm.get('name.firstname').valid && myForm.get('name.firstname').touched" class="help-block">First Name is required!</span>
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input 
+              type="text"
+              class="form-control"
+              formControlName="lastname">
+              <span *ngIf="!myForm.get('name.lastname').valid && myForm.get('name.lastname').touched" class="help-black">Last name is required!</span>
+          </div>
         </div>
         <div class="form-group">
           <label>Email</label>
-          <input type="email"
-                  class="form-control">
+          <input 
+            type="email"
+            class="form-control"
+            formControlName="email">
+            <span *ngIf="!myForm.get('email').valid && myForm.get('email').touched" class="help-block">
+              <span *ngIf="myForm.get('email').errors && myForm.get('email').errors['emailIsFOrbidden']">Email is invalid!</span>
+              <span *ngIf="myForm.get('email').errors && myForm.get('email').errors['required']">Email is required!</span>
+            </span>
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password"
-                class="form-control">
+          <input 
+            type="password"
+            class="form-control"
+            formControlName="password">
+            <span *ngIf="myForm.get('password').errors && myForm.get('password').errors['minlength']" class="help-black">Password not less 8!</span>
         </div>
         <div class="form-group">
           <label>Language</label>
-          <select class="form-control">
+          <select class="form-control" formControlName="language">
             <option value="">Please select a language</option>
             <option [value]="lang" *ngFor="let lang of langs">
               {{ lang }}
@@ -33,6 +52,7 @@
         </div>
         <button type="submit" class="btn btn-primary" >Submit</button>
       </form>
+      <pre>{{ myForm.value | json }}</pre>
     </div>
   </div>
 </div>
